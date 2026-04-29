@@ -112,3 +112,16 @@ export const feedbackEvents = pgTable('feedback_events', {
   userId: text('user_id').notNull(),
   createdAt: timestamp('created_at').defaultNow(),
 });
+
+// ─── Slack Channel Links ───────────────────────────────
+export const slackChannels = pgTable(
+  'slack_channels',
+  {
+    id: uuid('id').defaultRandom().primaryKey(),
+    projectId: uuid('project_id').notNull().references(() => projects.id),
+    channelId: text('channel_id').notNull(),
+    channelName: text('channel_name'),
+    createdAt: timestamp('created_at').defaultNow(),
+  },
+  (t) => [index('idx_slack_channel').on(t.channelId)],
+);

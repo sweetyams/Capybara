@@ -3,7 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev -p 3101",
+    "dev:tunnel": "concurrently \"next dev -p 3101\" \"npx cloudflared tunnel --url http://localhost:3101\"",
     "build": "next build",
     "start": "next start",
     "lint": "eslint"
@@ -11,6 +12,7 @@
   "dependencies": {
     "@clerk/nextjs": "^7.2.7",
     "@neondatabase/serverless": "^1.1.0",
+    "@slack/web-api": "^7.15.1",
     "drizzle-orm": "^0.45.2",
     "next": "16.2.4",
     "openai": "^6.35.0",
@@ -22,9 +24,11 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "concurrently": "^9.2.1",
     "drizzle-kit": "^0.31.10",
     "eslint": "^9",
     "eslint-config-next": "16.2.4",
+    "ngrok": "^5.0.0-beta.2",
     "tailwindcss": "^4",
     "typescript": "^5"
   }
